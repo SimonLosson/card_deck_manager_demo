@@ -6,6 +6,9 @@ on:
 jobs:
   Lint:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - name: Check out repository code
         uses: actions/checkout@v5
