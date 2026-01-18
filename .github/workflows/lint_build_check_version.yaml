@@ -1,0 +1,15 @@
+name: Lint workflow
+run-name: Linting source files
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  Lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v5
+      - name: Install required packages
+        run: pip install -r requirements.txt
+      - name: Run ruff checks
+        run: ruff check .
