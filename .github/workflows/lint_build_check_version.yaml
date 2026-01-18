@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v5
+      - name: Installing keyring
+        run: pip install keyring==25.7.0 keyrings.google-artifactregistry-auth==1.1.2
       - name: Authenticate to Google Cloud
         id: auth
         uses: google-github-actions/auth@v2
