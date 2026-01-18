@@ -9,7 +9,16 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v5
+      - name: Authenticate to Google Cloud
+        id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          project_id: card-deck-manager-483313
+          workload_identity_provider: projects/715667379936/locations/global/workloadIdentityPools/github-workload-identity-pool/providers/github-provider
+          service_account: github-action@card-deck-manager-483313.iam.gserviceaccount.com
+          token_format: access_token
+          access_token_lifetime: 900s
       - name: Install required packages
-        run: pip install -r requirements.txt
+        run: pip install --extra-index-url https://europe-west1-python.pkg.dev/card-deck-manager-483313/mypythonreg/simple -r requirements.txt
       - name: Run ruff checks
         run: ruff check .
